@@ -1,6 +1,30 @@
 
+def is_address_valid(email: str) -> bool:
+    if '@' not in email:
+        return False
+
+    remail = email[::-1].lower()
+    for domain in [".com", ".ru", ".net"]:
+        if remail.find(domain[::-1]) == 0:
+            return True
+
+    return False
+
+
 def send_email(message, recipient, *, sender = 'university.help@gmail.com') -> None:
-    pass
+    if not is_address_valid(recipient) or not is_address_valid(sender):
+        print(f"Невозможно отправить письмо с адреса {sender} на адрес {recipient}")
+        return
+
+    if recipient == sender:
+        print("Нельзя отправить письмо самому себе!")
+        return
+
+    if sender == 'university.help@gmail.com':
+        print(f"Письмо успешно отправлено с адреса {sender} на адрес {recipient}.")
+        return
+
+    print(f"НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса {sender} на адрес {recipient}.")
 
 
 def test():
@@ -8,9 +32,24 @@ def test():
     send_email('Вы видите это сообщение как лучший студент курса!', 'urban.fan@mail.ru', sender='urban.info@gmail.com')
     send_email('Пожалуйста, исправьте задание', 'urban.student@mail.ru', sender='urban.teacher@mail.uk')
     send_email('Напоминаю самому себе о вебинаре', 'urban.teacher@mail.ru', sender='urban.teacher@mail.ru')
+#Вывод на консоль:
+#Письмо успешно отправлено с адреса university.help@gmail.com на адрес vasyok1337@gmail.com
+#НЕСТАНДАРТНЫЙ ОТПРАВИТЕЛЬ! Письмо отправлено с адреса urban.info@gmail.com на адрес urban.fan@mail.ru
+#Невозможно отправить письмо с адреса urban.teacher@mail.uk на адрес urban.student@mail.ru
+#Нельзя отправить письмо самому себе!
+
 
 def main():
-    pass
+    send_email('', '')
+    send_email('jkhfqwalsnh;qwerjfhbn', '@.com')
+    send_email('akljkasjaskjas', '@.cococo')
+    send_email('', '@.ru', sender='urban.info@gmail.com')
+    send_email('1', '@ыыыыыыыы.net', sender='http://yandex.ru/free_cat_pictures_no_sms.html urban@info.com')
+    send_email("pycckuu' 93blk", 'urban.fan@mail.соm')
+    send_email("самому себе",     'university.help@gmail.com', sender='university.help@gmail.com')
+    send_email("ещё самому себе", 'university.help@gmail.com', sender='university.help@gmаil.com')
+    send_email("а так?",          'university.help@gmаil.com', sender='university.help@gmail.com')
+
 
 test()
 #main()
