@@ -1,10 +1,22 @@
 
+def send_email(message, recipient, *, sender = 'university.help@gmail.com') -> None:
+    pass
 
+
+def test():
+    send_email('Это сообщение для проверки связи', 'vasyok1337@gmail.com')
+    send_email('Вы видите это сообщение как лучший студент курса!', 'urban.fan@mail.ru', sender='urban.info@gmail.com')
+    send_email('Пожалуйста, исправьте задание', 'urban.student@mail.ru', sender='urban.teacher@mail.uk')
+    send_email('Напоминаю самому себе о вебинаре', 'urban.teacher@mail.ru', sender='urban.teacher@mail.ru')
+
+def main():
+    pass
+
+test()
+#main()
 
 """
 2023/10/08 00:00|Домашняя работа по уроку "Способы вызова функции"
-Если вы решали старую версию задачи, проверка будет производиться по ней.
-Ссылка на старую версию тут.
 
 Цель: закрепить знания о параметрах по умолчанию и именованных аргументах.
 
